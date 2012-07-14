@@ -4,8 +4,8 @@ require File.expand_path('../lib/acts_as_hashed/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Rodrigo Pinto"]
   gem.email         = ["rodrigopqn@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{ActsAsHashed is helpful to set a hash_code column based on SecureRandom.hex(16).}
+  gem.summary       = %q{SecureRandom hex generator for hashed_code column.}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)

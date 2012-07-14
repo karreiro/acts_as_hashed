@@ -1,6 +1,6 @@
 # ActsAsHashed
 
-TODO: Write a gem description
+ActsAsHashed is helpful to set a hash_code column based on SecureRandom.hex(16).
 
 ## Installation
 
