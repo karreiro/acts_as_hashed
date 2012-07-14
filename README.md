@@ -18,7 +18,31 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+#### Run your migrations for the desired models
+
+```ruby
+class AddHashedCodeToSeller < ActiveRecord::Migration
+  def self.up
+    add_column :sellers, :hashed_code, :string
+  end
+
+  def self.down
+    remove_column :sellers, :hashed_code, :string
+  end
+end
+```
+
+### Usage
+
+#### In your model:
+
+```ruby
+class Seller < ActiveRecord::Base
+  acts_as_hashed
+
+  ...
+end
+```
 
 ## Contributing
 
