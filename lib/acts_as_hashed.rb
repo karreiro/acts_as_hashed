@@ -17,7 +17,7 @@ module ActsAsHashed
       end
 
       def hashed_code_exists?(hashed_code)
-        !where(:hashed_code => hashed_code).count.zero?
+        where(:hashed_code => hashed_code).any?
       end
     end
 
