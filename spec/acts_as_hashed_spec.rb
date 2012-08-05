@@ -9,9 +9,20 @@ FileUtils.rm_f DB_FILE
 
 ActiveRecord::Base.establish_connection :adapter => 'sqlite3', :database => DB_FILE
 ActiveRecord::Base.connection.execute 'CREATE TABLE some_models (id INTEGER NOT NULL PRIMARY KEY, hashed_code string)'
+ActiveRecord::Base.connection.execute 'CREATE TABLE overwrited_models (id INTEGER NOT NULL PRIMARY KEY, hashed_code string)'
 
 class SomeModel < ActiveRecord::Base
   acts_as_hashed
+end
+
+class OverwritedModel < ActiveRecord::Base
+  acts_as_hashed
+
+  class << self
+    def friendly_token
+      SecureRandom.hex(5)
+    end
+  end
 end
 
 describe ActsAsHashed do
@@ -38,6 +49,16 @@ describe ActsAsHashed do
       expect {
         model.save!
       }.to_not change(model, :hashed_code)
+    end
+  end
+  context "overwrite friendly_token" do
+    let!(:model) do
+      model = OverwritedModel.new
+      model.save
+      model
+    end
+    it "should have hashed_code with lenght 10" do
+      model.hashed_code.length.should == 10
     end
   end
 end
