@@ -13,7 +13,7 @@ module ActsAsHashed
 
     module ClassMethods
       def friendly_token
-        SecureRandom.hex(16)
+        SecureRandom.hex
       end
 
       def hashed_code_exists?(hashed_code)
