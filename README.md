@@ -44,6 +44,20 @@ class Seller < ActiveRecord::Base
 end
 ```
 
+or you can overwrite the method that will generate the hash.
+
+```ruby
+class Seller < ActiveRecord::Base
+  acts_as_hashed
+
+  class << self
+    def friendly_token
+      SecureRandom.hex(5)
+    end
+  end
+end
+```
+
 ## Contributing
 
 1. Fork it
