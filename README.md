@@ -18,16 +18,22 @@ Or install it yourself as:
 
 ## Usage
 
-#### Run your migrations for the desired models
+#### Create your migrations for the desired models
+
+```bash
+$ rails g migration AddHashedCodeToOrders hashed_code:string
+```
+
+or
 
 ```ruby
-class AddHashedCodeToSeller < ActiveRecord::Migration
+class AddHashedCodeToOrders < ActiveRecord::Migration
   def self.up
-    add_column :sellers, :hashed_code, :string
+    add_column :orders, :hashed_code, :string
   end
 
   def self.down
-    remove_column :sellers, :hashed_code, :string
+    remove_column :orders, :hashed_code, :string
   end
 end
 ```
@@ -37,8 +43,12 @@ end
 #### In your model:
 
 ```ruby
-class Seller < ActiveRecord::Base
+class Order < ActiveRecord::Base
   acts_as_hashed
+
+  def to_param
+    hashed_code
+  end
 
   ...
 end
@@ -47,7 +57,7 @@ end
 or you can overwrite the method that will generate the hash.
 
 ```ruby
-class Seller < ActiveRecord::Base
+class Order < ActiveRecord::Base
   acts_as_hashed
 
   class << self
