@@ -29,36 +29,47 @@ describe ActsAsHashed do
   before(:each) do
     clean_database!
   end
-  context "new record" do
-    let(:model) { SomeModel.new }
-    it "should save hashed code" do
-      SomeModel.stub(:friendly_token).and_return('new-hashed-code-here')
-      expect {
+  describe :save do
+    context "new record" do
+      let(:model) { SomeModel.new }
+      it "should save hashed code" do
+        SomeModel.stub(:friendly_token).and_return('new-hashed-code-here')
+        expect {
+          model.save!
+        }.to change(model, :hashed_code).from(nil).to('new-hashed-code-here')
+      end
+    end
+    describe "persisted record" do
+      let(:model) do
+        model = SomeModel.new
         model.save!
-      }.to change(model, :hashed_code).from(nil).to('new-hashed-code-here')
+        model
+      end
+      it "should save hashed code" do
+        SomeModel.stub(:friendly_token).and_return('new-hashed-code-here')
+        expect {
+          model.save!
+        }.to_not change(model, :hashed_code)
+      end
+    end
+    context "overwrite friendly_token" do
+      let!(:model) do
+        model = OverwritedModel.new
+        model.save
+        model
+      end
+      it "should have hashed_code with lenght 10" do
+        model.hashed_code.length.should == 10
+      end
     end
   end
-  describe "persisted record" do
-    let(:model) do
-      model = SomeModel.new
-      model.save!
-      model
-    end
-    it "should save hashed code" do
-      SomeModel.stub(:friendly_token).and_return('new-hashed-code-here')
-      expect {
-        model.save!
-      }.to_not change(model, :hashed_code)
-    end
-  end
-  context "overwrite friendly_token" do
+  describe :update_missing_hashed_code do
     let!(:model) do
-      model = OverwritedModel.new
+      model = SomeModel.new
       model.save
-      model
+      model.update_column(:hashed_code, nil)
+      model.reload
     end
-    it "should have hashed_code with lenght 10" do
-      model.hashed_code.length.should == 10
-    end
+    it { expect { SomeModel.update_missing_hashed_code }.to change { model.reload.hashed_code }.from(nil) }
   end
 end

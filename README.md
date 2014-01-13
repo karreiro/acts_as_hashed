@@ -68,6 +68,12 @@ class Order < ActiveRecord::Base
 end
 ```
 
+If you are adding acts_as_hashed after having some records on your database you need too run the code above to update the records:
+
+```ruby
+Order.update_missing_hashed_code
+```
+
 ## Contributing
 
 1. Fork it
