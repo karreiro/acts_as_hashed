@@ -75,3 +75,12 @@ end
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Credits
+
+ActsAsHashed is maintained and funded by [HE:labs](http://helabs.com.br/opensource/).
+Thank you to all the [contributors](https://github.com/Helabs/acts_as_hashed/graphs/contributors).
+
+## License
+
+ActsAsHashed is Copyright © 2012-2014 HE:labs. It is free software, and may be redistributed under the terms specified in the LICENSE file.
