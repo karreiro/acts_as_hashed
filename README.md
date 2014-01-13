@@ -18,29 +18,17 @@ Or install it yourself as:
 
 ## Usage
 
-#### Create your migrations for the desired models
-
-```bash
-$ rails g migration AddHashedCodeToOrders hashed_code:string
-```
-
-or
+### In your model:
 
 ```ruby
-class AddHashedCodeToOrders < ActiveRecord::Migration
-  def self.up
-    add_column :orders, :hashed_code, :string
-  end
+class Order < ActiveRecord::Base
+  acts_as_hashed
 
-  def self.down
-    remove_column :orders, :hashed_code, :string
-  end
+  ...
 end
 ```
 
-### Usage
-
-#### In your model:
+If you want to use the *hashed_code* instead of *id* on URLs:
 
 ```ruby
 class Order < ActiveRecord::Base
@@ -54,7 +42,7 @@ class Order < ActiveRecord::Base
 end
 ```
 
-or you can overwrite the method that will generate the hash.
+You can overwrite the method that generates the hash.
 
 ```ruby
 class Order < ActiveRecord::Base
@@ -68,10 +56,22 @@ class Order < ActiveRecord::Base
 end
 ```
 
-If you are adding acts_as_hashed after having some records on your database you need too run the code above to update the records:
+### Create your migrations for the desired models
+
+```bash
+$ rails g migration AddHashedCodeToOrders hashed_code:string
+```
+
+Update your migration to add Model.update_missing_hashed_code
 
 ```ruby
-Order.update_missing_hashed_code
+class AddHashedCodeToOrders < ActiveRecord::Migration
+  def change
+    add_column :orders, :hashed_code, :string
+    Order.reset_column_information
+    Order.update_missing_hashed_code
+  end
+end
 ```
 
 ## Contributing
