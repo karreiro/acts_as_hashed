@@ -82,6 +82,10 @@ end
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+## Maintainers
+
+- [Tomás Augusto Müller](https://github.com/tomasmuller)
+
 ## Credits
 
 ActsAsHashed is maintained and funded by [HE:labs](http://helabs.com.br/opensource/).
