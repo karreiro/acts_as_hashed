@@ -82,6 +82,17 @@ end
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+## Release
+
+Follow this steps to release a new version of the gem.
+
+1. Test if everything is running ok;
+1. Change version of the gem on `VERSION` constant;
+1. Add the release date on the `CHANGELOG`;
+1. Do a commit "Bump version x.x.x", follow the semantic version;
+1. Run `$ rake release`, this will send the gem to the rubygems;
+1. Check if the gem is on the rubygems and the tags are correct on Github;
+
 ## Credits
 
 ActsAsHashed is maintained and funded by [HE:labs](http://helabs.com.br/opensource/).
