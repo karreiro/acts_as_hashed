@@ -9,6 +9,7 @@
 ### improvements
 
 - Update readme
+- Add Contributing
 
 ### bug fixes
 
