@@ -96,6 +96,11 @@ Follow this steps to release a new version of the gem.
 1. Run `$ rake release`, this will send the gem to the rubygems;
 1. Check if the gem is on the rubygems and the tags are correct on Github;
 
+## Maintainers
+
+- [Tomás Augusto Müller](https://github.com/tomasmuller)
+- [Rafael Fiuza](https://github.com/guiloyins)
+
 ## Credits
 
 ActsAsHashed is maintained and funded by [HE:labs](http://helabs.com.br/opensource/).
