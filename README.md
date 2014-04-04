@@ -85,6 +85,7 @@ end
 ## Maintainers
 
 - [Tomás Augusto Müller](https://github.com/tomasmuller)
+- [Rafael Fiuza](https://github.com/guiloyins)
 
 ## Credits
 
