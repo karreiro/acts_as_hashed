@@ -74,6 +74,9 @@ class AddHashedCodeToOrders < ActiveRecord::Migration
 end
 ```
 
+## Issues
+If you have problems, please create a [Github Issue](https://github.com/Helabs/acts_as_hashed/issues).
+
 ## Contributing
 
 1. Fork it
