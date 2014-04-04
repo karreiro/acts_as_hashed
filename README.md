@@ -74,6 +74,13 @@ class AddHashedCodeToOrders < ActiveRecord::Migration
 end
 ```
 
+## Versioning
+
+acts_as_hashed follow the [Semantic Versioning](http://semver.org/)
+
+## Issues
+If you have problems, please create a [Github Issue](https://github.com/Helabs/acts_as_hashed/issues).  
+
 ## Contributing
 
 Please see [CONTRIBUTING.md](https://github.com/Helabs/acts_as_hashed/blob/master/CONTRIBUTING.md) for details.
