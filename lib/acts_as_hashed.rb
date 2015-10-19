@@ -1,9 +1,22 @@
 require "acts_as_hashed/version"
 
 module ActsAsHashed
-  def acts_as_hashed
-    before_create :set_hashed_code
+  def acts_as_hashed(callback_name = :before_create)
+    set_hashed_code(callback_name)
     include InstanceMethods
+  end
+
+  private
+
+  def set_hashed_code(callback_name)
+    unless allowed_callbacks_to_hashed_code.include?(callback_name)
+      raise ArgumentError.new("The valid callbacks options are: #{allowed_callbacks_to_hashed_code.to_sentence}")
+    end
+    public_send(callback_name, :set_hashed_code)
+  end
+
+  def allowed_callbacks_to_hashed_code
+    [:before_validation, :before_create, :before_update, :before_save]
   end
 
   module InstanceMethods
@@ -34,7 +47,6 @@ module ActsAsHashed
         break self.hashed_code unless self.class.hashed_code_exists?(self.hashed_code)
       end
     end
-
   end
 end
 

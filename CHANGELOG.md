@@ -10,6 +10,7 @@
 
 - Update readme
 - Add Contributing
+- Add custom callbacks
 
 ### bug fixes
 
